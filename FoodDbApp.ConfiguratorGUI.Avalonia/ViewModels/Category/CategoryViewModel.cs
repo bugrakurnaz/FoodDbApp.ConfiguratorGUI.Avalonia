@@ -20,5 +20,14 @@ public sealed partial class CategoryViewModel : ObservableObject
     {
         this.Id = category.Id;
         this.Name = category.Name;
-    } 
+    }
+
+    public WebClient.Net.Models.Category ToModel()
+    {
+        return new WebClient.Net.Models.Category()
+        {
+            Id = this.Id,
+            Name = this.Name
+        };
+    }
 }

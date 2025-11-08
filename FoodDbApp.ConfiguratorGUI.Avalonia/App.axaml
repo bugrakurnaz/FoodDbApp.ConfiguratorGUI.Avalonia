@@ -9,6 +9,7 @@
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
     <Application.Styles>
+        <StyleInclude Source="Styles/AppStyles.axaml" />
         <actipro:ModernTheme />
     </Application.Styles>
     <Application.DataTemplates>
@@ -25,6 +26,9 @@
         </DataTemplate>
         <DataTemplate x:DataType="category:AllCategoriesViewModel">
             <category1:AllCategoriesView />
+        </DataTemplate>
+        <DataTemplate x:DataType="category:EditCategoryViewModel">
+            <category1:EditCategoryView />
         </DataTemplate>
     </Application.DataTemplates>
 </Application>

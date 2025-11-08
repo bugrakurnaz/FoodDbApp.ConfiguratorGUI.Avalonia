@@ -4,14 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:category="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category"
              xmlns:models="clr-namespace:FoodDbApp.WebClient.Net.Models;assembly=FoodDbApp.WebClient.Net"
+             xmlns:actipro="http://schemas.actiprosoftware.com/avaloniaui"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="FoodDbApp.ConfiguratorGUI.Avalonia.Views.Category.AllCategoriesView"
              x:DataType="category:AllCategoriesViewModel">
-    <ListBox ItemsSource="{Binding Categories}">
-        <ListBox.ItemTemplate>
-            <DataTemplate x:DataType="category:CategoryViewModel">
-                <TextBlock Text="{Binding Name}"/>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+    <Grid RowDefinitions="*,Auto">
+        <Border Grid.Row="0"
+                Classes="container-2 default-mg">
+            <ListBox ItemsSource="{Binding Categories}"
+                     SelectedItem="{Binding SelectedCategory, 
+                    Mode=TwoWay, 
+                    UpdateSourceTrigger=PropertyChanged}"
+                     BorderThickness="0"
+                     actipro:BorderChildClipConverter.ClipToContainingBorder="True">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="category:CategoryViewModel">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox> 
+        </Border>
+        
+        <Border Grid.Row="1"
+                Classes="container-2 default-mg">
+            <ContentControl Content="{Binding EditCategoryViewModel}" />
+        </Border>
+    </Grid>
+    
 </UserControl>

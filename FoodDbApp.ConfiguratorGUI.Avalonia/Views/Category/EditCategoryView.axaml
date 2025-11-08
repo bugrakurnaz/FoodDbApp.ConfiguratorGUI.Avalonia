@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:category="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FoodDbApp.ConfiguratorGUI.Avalonia.Views.Category.EditCategoryView"
+             x:DataType="category:EditCategoryViewModel">
+    <StackPanel Orientation="Vertical">
+        <Grid ColumnDefinitions="*,Auto">
+            <TextBlock Grid.Column="0"
+                       Classes="default-mg"
+                       VerticalAlignment="Center"
+                       Text="Name: " />
+            
+            <TextBox Grid.Column="1"
+                     Classes="default-mg has-clear-button"
+                     Width="200"
+                     VerticalAlignment="Center"
+                     Watermark="New name for the category"
+                     TextWrapping="WrapWithOverflow"
+                     Text="{Binding Name}" />
+        </Grid>
+        
+        <Grid ColumnDefinitions="*,Auto">
+            <Button Grid.Column="1"
+                    Classes="theme-solid accent default-mg"
+                    Content="Apply"
+                    VerticalAlignment="Center"
+                    Command="{Binding UpdateCategoryCommand}"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

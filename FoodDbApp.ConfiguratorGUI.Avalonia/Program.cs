@@ -28,7 +28,8 @@ sealed class Program
                     .ConfigureHttpClient(c =>
                     {
                         c.BaseAddress = new Uri(baseAddress);
-                    });
+                    })
+                    .SetHandlerLifetime(TimeSpan.FromSeconds(10));
 
                 AppServices.ConfigureServices(services);
 

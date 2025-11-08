@@ -1,0 +1,34 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:actipro="http://schemas.actiprosoftware.com/avaloniaui">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    <Style Selector=":is(Control).default-mg">
+        <Setter Property="Margin" Value="{actipro:ScaledThickness 1.00}" />
+    </Style>
+    
+    <Style Selector="Border.container-1, Border.container-2, Border.container-3">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{actipro:ScaledCornerRadius 1}" />
+    </Style>
+    
+    <Style Selector="Border.container-1">
+        <Setter Property="Background" Value="{actipro:ThemeResource Container1BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{actipro:ThemeResource Container1BorderBrush}" />
+    </Style>
+    
+    <Style Selector="Border.container-2">
+        <Setter Property="Background" Value="{actipro:ThemeResource Container2BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{actipro:ThemeResource Container2BorderBrush}" />
+    </Style>
+    
+    <Style Selector="Border.container-3">
+        <Setter Property="Background" Value="{actipro:ThemeResource Container3BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{actipro:ThemeResource Container3BorderBrush}" />
+    </Style>
+</Styles>
