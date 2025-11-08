@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDbApp.ConfiguratorGUI.Avalonia", "FoodDbApp.ConfiguratorGUI.Avalonia\FoodDbApp.ConfiguratorGUI.Avalonia.csproj", "{AB10F966-27DB-4B40-8648-C5F9DA819F8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDbApp.WebClient.Net", "..\FoodDbApp.WebClient.Net\FoodDbApp.WebClient.Net\FoodDbApp.WebClient.Net.csproj", "{688E6EFE-3752-4733-BF00-F9C81EB74F13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB10F966-27DB-4B40-8648-C5F9DA819F8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB10F966-27DB-4B40-8648-C5F9DA819F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB10F966-27DB-4B40-8648-C5F9DA819F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB10F966-27DB-4B40-8648-C5F9DA819F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{688E6EFE-3752-4733-BF00-F9C81EB74F13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{688E6EFE-3752-4733-BF00-F9C81EB74F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{688E6EFE-3752-4733-BF00-F9C81EB74F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{688E6EFE-3752-4733-BF00-F9C81EB74F13}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

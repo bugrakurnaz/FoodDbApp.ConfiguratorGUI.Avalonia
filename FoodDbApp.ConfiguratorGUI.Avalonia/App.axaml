@@ -1,0 +1,30 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:actipro="http://schemas.actiprosoftware.com/avaloniaui"
+             xmlns:viewModels="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels"
+             xmlns:views="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.Views"
+             xmlns:category="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category"
+             xmlns:category1="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.Views.Category"
+             x:Class="FoodDbApp.ConfiguratorGUI.Avalonia.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    <Application.Styles>
+        <actipro:ModernTheme />
+    </Application.Styles>
+    <Application.DataTemplates>
+        <DataTemplate x:DataType="viewModels:NavigationBarViewModel">
+            <views:NavigationBar />
+        </DataTemplate>
+        <DataTemplate x:DataType="viewModels:NavigatingContainerViewModel">
+            <views:NavigatingContainerView />
+        </DataTemplate>
+        
+        <!-- Category Management-->
+        <DataTemplate x:DataType="category:CategoryManagementViewModel">
+            <category1:CategoryManagementView />
+        </DataTemplate>
+        <DataTemplate x:DataType="category:AllCategoriesViewModel">
+            <category1:AllCategoriesView />
+        </DataTemplate>
+    </Application.DataTemplates>
+</Application>
