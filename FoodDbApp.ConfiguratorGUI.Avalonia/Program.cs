@@ -23,7 +23,7 @@ sealed class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureServices((context, services) =>
             {
-                string baseAddress = "http://localhost:5000";
+                string baseAddress = "http://localhost:8349";
                 services.AddRefitClient<ICategoriesApi>()
                     .ConfigureHttpClient(c =>
                     {
