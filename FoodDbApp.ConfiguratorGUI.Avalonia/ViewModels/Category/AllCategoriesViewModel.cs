@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 using Avalonia.Controls.Notifications;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using FoodDbApp.ConfiguratorGUI.Avalonia.Extensions;
+using FoodDbApp.ConfiguratorGUI.Avalonia.Interfaces;
 using FoodDbApp.ConfiguratorGUI.Avalonia.Messages;
 using FoodDbApp.WebClient.Net.Interfaces;
 using Refit;
 
 namespace FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category;
 
-public sealed partial class AllCategoriesViewModel : ObservableObject
+public sealed partial class AllCategoriesViewModel : ObservableObject, IRecipient<CategoryChangedMessage>
 {
     private readonly ICategoriesApi _categoriesApi;
+    private readonly INotificationSenderService _notificationSenderService;
     
     [ObservableProperty]
     private ObservableCollection<CategoryViewModel> _categories = [];
@@ -31,19 +35,33 @@ public sealed partial class AllCategoriesViewModel : ObservableObject
             return;
         }
 
-        EditCategoryViewModel = new EditCategoryViewModel(value, _categoriesApi);
+        EditCategoryViewModel = new EditCategoryViewModel(value, _categoriesApi, _notificationSenderService);
     }
 
     [ObservableProperty] 
     private EditCategoryViewModel? _editCategoryViewModel;
 
-    public AllCategoriesViewModel(ICategoriesApi categoriesApi)
+    public AllCategoriesViewModel(ICategoriesApi categoriesApi, INotificationSenderService notificationSenderService)
     {
         _categoriesApi = categoriesApi;
+        _notificationSenderService = notificationSenderService;
+        
+        WeakReferenceMessenger.Default.Register<CategoryChangedMessage>(this);
+        
         Task.Run(RefreshAllCategoriesAsync);
     }
 
-    private async Task? RefreshAllCategoriesAsync()
+    [RelayCommand]
+    private void DeleteCategory(CategoryViewModel? category)
+    {
+        if (category is null)
+        {
+            return;
+        }
+        Task.Run(async () => await DeleteCategoryAsync(category));
+    }
+
+    private async Task RefreshAllCategoriesAsync()
     {
         IEnumerable<WebClient.Net.Models.Category> categories;
         try
@@ -52,33 +70,12 @@ public sealed partial class AllCategoriesViewModel : ObservableObject
         }
         catch (ApiException apiException)
         {
-            WeakReferenceMessenger.Default.Send(new NotificationMessage()
-            {
-                Notification = new Notification()
-                {
-                    Title = "Error",
-                    Message = $"""
-                               An error occured while updating category: {apiException.Message}""
-                               HttpMethod: {apiException.HttpMethod}
-                               Path: {apiException.Uri?.AbsolutePath ?? string.Empty}
-                               StatusCode: {apiException.StatusCode}
-                               """,
-                    Type = NotificationType.Error
-                }
-            });
+            _notificationSenderService.SendNotification("Api Error", apiException.ToErrorMessage(), NotificationType.Error);
             return;
         }
         catch (Exception exception)
         {
-            WeakReferenceMessenger.Default.Send(new NotificationMessage()
-            {
-                Notification = new Notification()
-                {
-                    Title = "Error",
-                    Message = $"Undefined Exception: {exception.Message}",
-                    Type = NotificationType.Error
-                }
-            });
+            _notificationSenderService.SendNotification("Undefined Error", exception.Message, NotificationType.Error);
             return;
         }
         await Dispatcher.UIThread.InvokeAsync(() =>
@@ -86,5 +83,28 @@ public sealed partial class AllCategoriesViewModel : ObservableObject
             Categories =
                 new ObservableCollection<CategoryViewModel>(categories.Select(category => new CategoryViewModel(category)));
         });
+    }
+
+    private async Task DeleteCategoryAsync(CategoryViewModel category)
+    {
+        try
+        {
+            await _categoriesApi.Delete(category.Id);
+            await RefreshAllCategoriesAsync();
+            _notificationSenderService.SendNotification("Success", "Category Deleted", NotificationType.Success);
+        }
+        catch (ApiException apiException)
+        {
+            _notificationSenderService.SendNotification("Api Error", apiException.ToErrorMessage(), NotificationType.Error);
+        }
+        catch (Exception exception)
+        {
+            _notificationSenderService.SendNotification("Undefined Error", exception.Message, NotificationType.Error);
+        }
+    }
+
+    public void Receive(CategoryChangedMessage message)
+    {
+        Task.Run(async () => await RefreshAllCategoriesAsync());
     }
 }

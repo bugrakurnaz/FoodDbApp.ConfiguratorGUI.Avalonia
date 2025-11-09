@@ -5,6 +5,7 @@
              xmlns:category="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category"
              xmlns:models="clr-namespace:FoodDbApp.WebClient.Net.Models;assembly=FoodDbApp.WebClient.Net"
              xmlns:actipro="http://schemas.actiprosoftware.com/avaloniaui"
+             xmlns:category1="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.Views.Category"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="FoodDbApp.ConfiguratorGUI.Avalonia.Views.Category.AllCategoriesView"
              x:DataType="category:AllCategoriesViewModel">
@@ -19,7 +20,15 @@
                      actipro:BorderChildClipConverter.ClipToContainingBorder="True">
                 <ListBox.ItemTemplate>
                     <DataTemplate x:DataType="category:CategoryViewModel">
-                        <TextBlock Text="{Binding Name}"/>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Grid.Column="0" 
+                                       Text="{Binding Name}"/>
+                            <Button Grid.Column="1" 
+                                    Content="Delete"
+                                    Command="{Binding $parent[category1:AllCategoriesView].((category:AllCategoriesViewModel)DataContext).DeleteCategoryCommand}"
+                                    CommandParameter="{Binding Path=.}"/>
+                        </Grid>
+                        
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox> 

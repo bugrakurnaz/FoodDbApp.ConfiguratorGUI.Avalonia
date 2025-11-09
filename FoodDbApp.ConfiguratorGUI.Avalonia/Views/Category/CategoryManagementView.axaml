@@ -10,5 +10,8 @@
         <TabItem Header="All Categories">
             <ContentControl Content="{Binding AllCategoriesViewModel}" />
         </TabItem>
+        <TabItem Header="Add Category">
+            <ContentControl Content="{Binding AddCategoryViewModel}" />
+        </TabItem>
     </TabControl>
 </UserControl>

@@ -4,14 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:category="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="FoodDbApp.ConfiguratorGUI.Avalonia.Views.Category.EditCategoryView"
-             x:DataType="category:EditCategoryViewModel">
+             x:Class="FoodDbApp.ConfiguratorGUI.Avalonia.Views.Category.AddCategoryView"
+             x:DataType="category:AddCategoryViewModel">
     <StackPanel Orientation="Vertical">
         <Grid ColumnDefinitions="*,Auto">
             <TextBlock Grid.Column="0"
                        Classes="default-mg"
                        VerticalAlignment="Center"
-                       Text="Name: " />
+                       Text="Category name: " />
             
             <TextBox Grid.Column="1"
                      Classes="default-mg has-clear-button"
@@ -24,11 +24,11 @@
         
         <Grid ColumnDefinitions="*,Auto">
             <Button Grid.Column="1"
-                    Classes="theme-solid accent default-mg"
-                    Content="Apply"
+                    Command="{Binding AddCategoryCommand}"
+                    IsEnabled="{Binding IsAddPossible}"
                     VerticalAlignment="Center"
-                    IsEnabled="{Binding IsEditPossible}"
-                    Command="{Binding UpdateCategoryCommand}"/>
+                    Content="Add"
+                    Classes="theme-solid accent default-mg"/>
         </Grid>
     </StackPanel>
 </UserControl>

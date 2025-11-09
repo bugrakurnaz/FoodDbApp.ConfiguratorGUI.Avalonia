@@ -4,6 +4,8 @@ using Avalonia.Controls.Notifications;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using FoodDbApp.ConfiguratorGUI.Avalonia.Extensions;
+using FoodDbApp.ConfiguratorGUI.Avalonia.Interfaces;
 using FoodDbApp.ConfiguratorGUI.Avalonia.Messages;
 using FoodDbApp.WebClient.Net.Interfaces;
 using Refit;
@@ -12,6 +14,10 @@ namespace FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category;
 
 public sealed partial class EditCategoryViewModel : ObservableObject
 {
+    private readonly CategoryViewModel _categoryViewModel;
+    private readonly ICategoriesApi _categoriesApi;
+    private readonly INotificationSenderService _notificationSenderService;
+    
     [ObservableProperty] 
     private string _name = string.Empty;
 
@@ -23,13 +29,13 @@ public sealed partial class EditCategoryViewModel : ObservableObject
     [ObservableProperty] 
     private bool _isEditPossible = false;
 
-    private readonly CategoryViewModel _categoryViewModel;
-    private readonly ICategoriesApi _categoriesApi;
-
-    public EditCategoryViewModel(CategoryViewModel categoryViewModel, ICategoriesApi categoriesApi)
+    public EditCategoryViewModel(CategoryViewModel categoryViewModel, 
+        ICategoriesApi categoriesApi,
+        INotificationSenderService notificationSenderService)
     {
         _categoryViewModel = categoryViewModel;
         _categoriesApi = categoriesApi;
+        _notificationSenderService = notificationSenderService;
         this.Name = categoryViewModel.Name;
     }
 
@@ -46,23 +52,17 @@ public sealed partial class EditCategoryViewModel : ObservableObject
         try
         {
             await _categoriesApi.Update(categoryModel.Id, categoryModel);
+            _notificationSenderService.SendNotification("Success", "Category updated successfully", NotificationType.Success);
+            WeakReferenceMessenger.Default.Send(new CategoryChangedMessage());
         }
         catch (ApiException apiException)
         {
-            WeakReferenceMessenger.Default.Send(new NotificationMessage()
-            {
-                Notification = new Notification()
-                {
-                    Title = "Error",
-                    Message = $"""
-                               An error occured while updating category: {apiException.Message}""
-                               HttpMethod: {apiException.HttpMethod}
-                               Path: {apiException.Uri?.AbsolutePath ?? string.Empty}
-                               StatusCode: {apiException.StatusCode}
-                               """,
-                    Type = NotificationType.Error
-                }
-            });
+            _notificationSenderService.SendNotification("Api Error", apiException.ToErrorMessage(),
+                NotificationType.Error);
+        }
+        catch (Exception ex)
+        {
+            _notificationSenderService.SendNotification("Error", ex.Message, NotificationType.Error);
         }
     }
 }

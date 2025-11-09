@@ -30,5 +30,8 @@
         <DataTemplate x:DataType="category:EditCategoryViewModel">
             <category1:EditCategoryView />
         </DataTemplate>
+        <DataTemplate x:DataType="category:AddCategoryViewModel">
+            <category1:AddCategoryView />
+        </DataTemplate>
     </Application.DataTemplates>
 </Application>

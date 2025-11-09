@@ -5,6 +5,7 @@
       <map>
         <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/App.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
         <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Styles/AppStyles.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
+        <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/Category/AddCategoryView.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
         <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/Category/AllCategoriesView.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
         <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/Category/CategoryManagementView.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
         <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/Category/EditCategoryView.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />

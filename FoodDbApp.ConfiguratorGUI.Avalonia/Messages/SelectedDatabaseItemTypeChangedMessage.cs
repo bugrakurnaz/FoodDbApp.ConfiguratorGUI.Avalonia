@@ -1,4 +1,3 @@
-using CommunityToolkit.Mvvm.ComponentModel;
 using FoodDbApp.ConfiguratorGUI.Avalonia.Primitives;
 
 namespace FoodDbApp.ConfiguratorGUI.Avalonia.Messages;

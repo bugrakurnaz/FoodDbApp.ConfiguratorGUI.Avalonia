@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Controls.Notifications;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Messaging;
 using FoodDbApp.ConfiguratorGUI.Avalonia.Messages;
@@ -6,19 +7,19 @@ using FoodDbApp.ConfiguratorGUI.Avalonia.Messages;
 
 namespace FoodDbApp.ConfiguratorGUI.Avalonia.Views;
 
-public partial class MainWindow : Window, IRecipient<NotificationMessage>
+public partial class MainWindow : Window, IRecipient<Notification>
 {
     public MainWindow()
     {
         InitializeComponent();
-        WeakReferenceMessenger.Default.Register<NotificationMessage>(this);
+        WeakReferenceMessenger.Default.Register<Notification>(this);
     }
 
-    public void Receive(NotificationMessage message)
+    public void Receive(Notification message)
     {
         Dispatcher.UIThread.InvokeAsync(() =>
         {
-            WindowNotificationManager.Show(message.Notification);
+            WindowNotificationManager.Show(message);
         });
     }
 }
