@@ -2,33 +2,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:category="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category"
-             xmlns:models="clr-namespace:FoodDbApp.WebClient.Net.Models;assembly=FoodDbApp.WebClient.Net"
+             xmlns:storageLocations="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.StorageLocations"
              xmlns:actipro="http://schemas.actiprosoftware.com/avaloniaui"
-             xmlns:category1="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.Views.Category"
+             xmlns:views="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.Views.StorageLocation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="FoodDbApp.ConfiguratorGUI.Avalonia.Views.Category.AllCategoriesView"
-             x:DataType="category:AllCategoriesViewModel">
+             x:Class="FoodDbApp.ConfiguratorGUI.Avalonia.Views.StorageLocation.AllStorageLocationsView"
+             x:DataType="storageLocations:AllStorageLocationsViewModel">
     <Grid RowDefinitions="*,Auto">
         <Border Grid.Row="0"
                 Classes="container-2 default-mg">
-            <ListBox ItemsSource="{Binding Categories}"
-                     SelectedItem="{Binding SelectedCategory, 
+            <ListBox ItemsSource="{Binding StorageLocations}"
+                     SelectedItem="{Binding SelectedStorageLocation, 
                     Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}"
                      BorderThickness="0"
                      actipro:BorderChildClipConverter.ClipToContainingBorder="True">
                 <ListBox.ItemTemplate>
-                    <DataTemplate x:DataType="category:CategoryViewModel">
+                    <DataTemplate x:DataType="storageLocations:StorageLocationViewModel">
                         <Grid ColumnDefinitions="*,Auto">
                             <TextBlock Grid.Column="0" 
                                        Text="{Binding Name}"/>
                             <Button Grid.Column="1" 
                                     Content="Delete"
-                                    Command="{Binding $parent[category1:AllCategoriesView].((category:AllCategoriesViewModel)DataContext).DeleteCategoryCommand}"
+                                    Command="{Binding $parent[views:AllStorageLocationsView].((storageLocations:AllStorageLocationsViewModel)DataContext).DeleteStorageLocationCommand}"
                                     CommandParameter="{Binding Path=.}"/>
                         </Grid>
-                        
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox> 
@@ -36,7 +34,7 @@
         
         <Border Grid.Row="1"
                 Classes="container-2 default-mg">
-            <ContentControl Content="{Binding EditCategoryViewModel}" />
+            <ContentControl Content="{Binding EditStorageLocationViewModel}" />
         </Border>
     </Grid>
 </UserControl>

@@ -12,6 +12,10 @@
         <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/MainWindow.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
         <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/NavigatingContainerView.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
         <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/NavigationBar.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
+        <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/StorageLocation/AddStorageLocationView.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
+        <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/StorageLocation/AllStorageLocationsView.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
+        <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/StorageLocation/EditStorageLocationView.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
+        <entry key="FoodDbApp.ConfiguratorGUI.Avalonia/Views/StorageLocation/StorageLocationManagementView.axaml" value="FoodDbApp.ConfiguratorGUI.Avalonia/FoodDbApp.ConfiguratorGUI.Avalonia.csproj" />
       </map>
     </option>
   </component>

@@ -6,6 +6,7 @@ using FoodDbApp.ConfiguratorGUI.Avalonia.Messages;
 using FoodDbApp.ConfiguratorGUI.Avalonia.Primitives;
 using FoodDbApp.ConfiguratorGUI.Avalonia.Services;
 using FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category;
+using FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.StorageLocations;
 using FoodDbApp.WebClient.Net.Interfaces;
 
 // ReSharper disable RedundantTypeArgumentsOfMethod
@@ -29,7 +30,7 @@ public sealed partial class NavigatingContainerViewModel : ObservableObject,
         CurrentlyDisplayedViewModel = message.ItemType switch
         {
             DatabaseItemType.Category => AppServices.GetService<CategoryManagementViewModel>(),
-            DatabaseItemType.StorageLocation => null,
+            DatabaseItemType.StorageLocation => AppServices.GetService<StorageLocationManagementViewModel>(),
             DatabaseItemType.InventoryItem => null,
             _ => throw new ArgumentOutOfRangeException()
         };

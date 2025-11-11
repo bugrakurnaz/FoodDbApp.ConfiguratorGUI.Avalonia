@@ -5,6 +5,8 @@
              xmlns:views="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.Views"
              xmlns:category="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category"
              xmlns:category1="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.Views.Category"
+             xmlns:StorageLocation="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.StorageLocations"
+             xmlns:storageLocation="clr-namespace:FoodDbApp.ConfiguratorGUI.Avalonia.Views.StorageLocation"
              x:Class="FoodDbApp.ConfiguratorGUI.Avalonia.App"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
@@ -32,6 +34,20 @@
         </DataTemplate>
         <DataTemplate x:DataType="category:AddCategoryViewModel">
             <category1:AddCategoryView />
+        </DataTemplate>
+        
+        <!-- Storage Location Management-->
+        <DataTemplate x:DataType="StorageLocation:StorageLocationManagementViewModel">
+            <storageLocation:StorageLocationManagementView />
+        </DataTemplate>
+        <DataTemplate x:DataType="StorageLocation:AllStorageLocationsViewModel">
+            <storageLocation:AllStorageLocationsView />
+        </DataTemplate>
+        <DataTemplate x:DataType="StorageLocation:EditStorageLocationViewModel">
+            <storageLocation:EditStorageLocationView />
+        </DataTemplate>
+        <DataTemplate x:DataType="StorageLocation:AddStorageLocationViewModel">
+            <storageLocation:AddStorageLocationView />
         </DataTemplate>
     </Application.DataTemplates>
 </Application>

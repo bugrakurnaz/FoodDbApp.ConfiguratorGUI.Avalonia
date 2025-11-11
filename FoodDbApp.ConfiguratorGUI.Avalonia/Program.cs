@@ -31,6 +31,13 @@ sealed class Program
                     })
                     .SetHandlerLifetime(TimeSpan.FromSeconds(10));
 
+                services.AddRefitClient<IStorageLocationsApi>()
+                    .ConfigureHttpClient(c =>
+                    {
+                        c.BaseAddress = new Uri(baseAddress);
+                    })
+                    .SetHandlerLifetime(TimeSpan.FromSeconds(10));
+
                 AppServices.ConfigureServices(services);
 
             })

@@ -2,7 +2,7 @@ using System;
 using FoodDbApp.ConfiguratorGUI.Avalonia.Interfaces;
 using FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels;
 using FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Category;
-using FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.Factories;
+using FoodDbApp.ConfiguratorGUI.Avalonia.ViewModels.StorageLocations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FoodDbApp.ConfiguratorGUI.Avalonia.Services;
@@ -19,10 +19,14 @@ public static class AppServices
         serviceCollection.AddSingleton<NavigatingContainerViewModel>();
         
         // Categories
-        serviceCollection.AddSingleton<IEditCategoryViewModelFactory, EditCategoryViewModelFactory>();
         serviceCollection.AddTransient<AddCategoryViewModel>();
         serviceCollection.AddTransient<AllCategoriesViewModel>();
         serviceCollection.AddTransient<CategoryManagementViewModel>();
+        
+        // Categories
+        serviceCollection.AddTransient<AddStorageLocationViewModel>();
+        serviceCollection.AddTransient<AllStorageLocationsViewModel>();
+        serviceCollection.AddTransient<StorageLocationManagementViewModel>();
     }
     
     public static void SetProvider(IServiceProvider serviceProvider)
